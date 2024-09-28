@@ -1,4 +1,4 @@
-Here's a detailed `README.md` template for your `network-sniffer` project. This format includes emojis and sections to provide a clear overview of the project:
+Here’s the complete `README.md` in a format suitable for your GitHub repository, including all the steps for building a network sniffer using Python:
 
 ```markdown
 # 🐍 Network Sniffer
@@ -48,38 +48,122 @@ Before you begin, ensure you have the following software installed:
 
 ## 📦 Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/WengHebero/network-sniffer.git
-   cd network-sniffer
-   ```
+### Step 1: Install Python and Dependencies
 
-2. Install any additional requirements (if applicable):
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-## 🚀 Usage
-
-To start capturing packets, run the following command:
+Make sure Python is installed on your Mac (usually pre-installed). You can check by running:
 
 ```bash
-sudo python your_script.py
+python3 --version
 ```
 
-Replace `your_script.py` with the name of your main Python script.
+#### Install `Scapy` library
 
-### Capture Options
+`Scapy` is a powerful Python library used to interact with network packets.
 
-- Capture packets on a specific interface:
-  ```bash
-  sudo python your_script.py -i <interface_name>
-  ```
+1. Install `pip` if not already installed:
+   ```bash
+   sudo easy_install pip
+   ```
 
-- Save captured packets to a `.pcap` file:
-  ```bash
-  sudo python your_script.py -o captured_packets.pcap
-  ```
+2. Install `Scapy` using `pip`:
+   ```bash
+   sudo pip3 install scapy
+   ```
+
+### Step 2: Create the Python Script
+
+1. Open your terminal and create a new Python file:
+   ```bash
+   nano network_sniffer.py
+   ```
+
+2. Write a basic script to capture packets:
+
+   ```python
+   from scapy.all import sniff
+
+   # Callback function to process each packet
+   def process_packet(packet):
+       print(packet.summary())
+
+   # Sniff packets on the default network interface
+   sniff(prn=process_packet)
+   ```
+
+### Step 3: Run the Sniffer
+
+1. Save and exit the file (`Ctrl + X`, then `Y` to confirm).
+2. To run the script, use:
+   ```bash
+   sudo python3 network_sniffer.py
+   ```
+
+   **Note:** You need `sudo` because capturing network packets requires administrative privileges.
+
+You should start seeing packet summaries as they are captured on your network.
+
+### Step 4: Customize the Sniffer
+
+#### Filter Traffic by Protocol
+
+You can filter the types of packets you want to capture. For example, to only capture TCP packets, modify the script:
+
+```python
+from scapy.all import sniff
+
+def process_packet(packet):
+    if packet.haslayer('TCP'):
+        print(packet.summary())
+
+sniff(prn=process_packet)
+```
+
+#### Save Captured Packets to a File
+
+You might want to save captured packets for analysis later. You can do that by writing the packets to a `.pcap` file:
+
+```python
+from scapy.all import sniff, wrpcap
+
+packets = []
+
+def process_packet(packet):
+    packets.append(packet)
+    print(packet.summary())
+
+sniff(prn=process_packet)
+
+# Save packets to a file after sniffing is stopped
+wrpcap('captured_packets.pcap', packets)
+```
+
+### Step 5: Analyze Captured Packets
+
+You can analyze the `.pcap` file using **Wireshark**, a popular tool for network analysis, by opening the file:
+
+1. Open Wireshark and open the `captured_packets.pcap` file.
+
+This will allow you to visualize and analyze the captured traffic.
+
+### Step 6: Add More Functionality
+
+You can further enhance your sniffer by:
+
+- Capturing only specific IP addresses.
+- Counting packet types.
+- Displaying detailed packet information, including the packet’s source and destination IP addresses, ports, and protocol.
+
+For example, to capture HTTP requests, you could modify the script like this:
+
+```python
+from scapy.all import sniff, TCP
+
+def process_packet(packet):
+    if packet.haslayer(TCP) and packet.dport == 80:
+        print(f"HTTP Request: {packet.summary()}")
+
+sniff(prn=process_packet)
+```
 
 ## ⭐ Features
 
@@ -116,11 +200,10 @@ Happy Sniffing! 🐾
 ### Instructions for Use
 
 1. **Copy the above template** and paste it into a file named `README.md` in your project directory.
-2. **Customize** the sections as necessary, particularly the contact details and any additional features you want to highlight.
+2. **Customize** the sections, especially the contact details and any additional features you want to highlight.
 3. **Save** the file, and then push your changes to GitHub using the following commands:
    ```bash
    git add README.md
-   git commit -m "Add README.md"
+   git commit -m "Add detailed README.md"
    git push origin main
    ```
-
