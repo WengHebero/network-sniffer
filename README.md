@@ -1,5 +1,4 @@
-Here’s the complete `README.md` in a format suitable for your GitHub repository, including all the steps for building a network sniffer using Python:
-
+Network sniffer using Python:
 ```markdown
 # 🐍 Network Sniffer
 
