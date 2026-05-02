@@ -4,7 +4,7 @@ Network sniffer using Python:
 
 A simple network sniffer built using Python and Scapy. This tool captures and analyzes packets on a network interface.
 
-📋 Table of Contents
+**Table of Contents**
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -14,7 +14,7 @@ A simple network sniffer built using Python and Scapy. This tool captures and an
 - [Contributing](#contributing)
 - [Contact](#contact)
 
-📋 Prerequisites
+**Prerequisites**
 
 Before you begin, ensure you have the following software installed:
 
@@ -23,9 +23,9 @@ Before you begin, ensure you have the following software installed:
 - **Wireshark** (for packet analysis) 📊
 - **Scapy** (for packet manipulation) ⚡
 
-Install Prerequisites
+**Install Prerequisites**
 
-1. Install Homebrew (if you haven't already):
+1. **Install Homebrew **(if you haven't already):
    ```bash
    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
    ```
@@ -45,7 +45,7 @@ Install Prerequisites
    pip install scapy
    ```
 
-📦 Installation
+**Installation**
 
 ### Step 1: Install Python and Dependencies
 
@@ -193,7 +193,7 @@ For questions, suggestions, or feedback, feel free to reach out to me:
 
 ---
 
-Happy Sniffing! 🐾
+**Happy Sniffing**! 🐾
 ```
 
 ### Instructions for Use
